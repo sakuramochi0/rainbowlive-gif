@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block body %}
+    {% csrf_token %}
+    <div class="container-fluid">
+    <h1>{% block title %}rainbowlive gif tagger{% endblock %}</h1>
+    {% for gif in gifs %}
+        <div class="row">
+            <div class="col-4">
+                <video src="{% static 'gifs/'|add:gif.filename %}" autoplay loop></video>
+            </div>
+            <div class="tags col-8">
+            {% for tag in tags %}
+                <button class="tag mb-2 btn btn-{% if tag in gif.tags.all %}primary{% else %}secondary{% endif %}"
+                        data-filename="{{ gif.filename }}"
+                        data-tag="{{ tag.name }}"
+                        data-checked="{% if tag in gif.tags.all %}true{% else %}false{% endif %}">
+                    {{ tag.name_ja }}
+                </button>
+            {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
