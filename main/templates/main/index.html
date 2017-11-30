@@ -3,7 +3,7 @@
 {% block body %}
     {% csrf_token %}
     <div class="container-fluid">
-    <h1>{% block title %}rainbowlive gif tagger{% endblock %}</h1>
+    <h1>{% block title %}🌈 Rainbowlive gif tagger{% endblock %}</h1>
     <div class="row mb-3">
         <div class="mx-auto">
             <a href="{% if page.has_previous %}{% url 'page' page.previous_page_number %}{% else %}#{% endif %}"
