@@ -4,6 +4,16 @@
     {% csrf_token %}
     <div class="container-fluid">
     <h1>{% block title %}rainbowlive gif tagger{% endblock %}</h1>
+    <div class="row mb-3">
+        <div class="mx-auto">
+            <a href="{% if page.has_previous %}{% url 'page' page.previous_page_number %}{% else %}#{% endif %}"
+               class="prev btn btn-secondary">Prev</a>
+            <span>{{ page.number }} / {{ page.paginator.num_pages }}</span>
+            <a href="{% if page.has_next %}{% url 'page' page.next_page_number %}{% else %}#{% endif %}"
+               class="next btn btn-primary">Next</a>
+        </div>
+    </div>
+    <hr>
     {% for gif in gifs %}
         <div class="row">
             <div class="col-4">
@@ -20,6 +30,16 @@
             {% endfor %}
             </div>
         </div>
+        <hr>
     {% endfor %}
+    <div class="row mb-3">
+        <div class="mx-auto">
+            <a href="{% if page.has_previous %}{% url 'page' page.previous_page_number %}{% else %}#{% endif %}"
+               class="prev btn btn-secondary">Prev</a>
+            <span>{{ page.number }} / {{ page.paginator.num_pages }}</span>
+            <a href="{% if page.has_next %}{% url 'page' page.next_page_number %}{% else %}#{% endif %}"
+               class="next btn btn-primary">Next</a>
+        </div>
+    </div>
     </div>
 {% endblock %}
