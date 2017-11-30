@@ -121,6 +121,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Enable ajax post
-
-CSRF_USE_SESSIONS = True
