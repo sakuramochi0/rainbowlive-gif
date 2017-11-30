@@ -7,7 +7,7 @@ class Tag(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '<Tag: {}({}) >'.format(self.name_ja, self.name)
+        return '{} (#{})'.format(self.name_ja, self.name)
 
 
 class Gif(models.Model):
@@ -19,4 +19,4 @@ class Gif(models.Model):
 
     def __str__(self):
         tags = ' '.join(['#' + t.name for t in self.tags.all()])
-        return '<Gif: {} ({}) >'.format(self.filename, tags)
+        return '{} ({})'.format(self.filename, tags)
