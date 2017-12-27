@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import requests
 from get_tweepy import get_api
 from tweepy import Cursor
 from attrdict import AttrDict

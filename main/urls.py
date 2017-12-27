@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^(\d+)/$', views.page, name='page'),
+    url(r'^page/(\d+)/$', views.page, name='page'),
+    url(r'^tag/([^/]+)/$', views.tag, name='tag'),
+    url(r'^tag/([^/]+)/(\d+)/$', views.tag, name='tag'),
     url(r'api/update-tag/$', views.update_tag),
 ]

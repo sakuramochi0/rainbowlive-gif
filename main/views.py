@@ -22,7 +22,21 @@ def page(request, page):
 
     gifs = page.object_list
     tags = Tag.objects.all()
-    return render(request, 'main/index.html', {'gifs': gifs, 'tags': tags, 'page': page})
+    return render(request, 'main/page.html', {'gifs': gifs, 'tags': tags, 'page': page})
+
+
+def tag(request, tag, page_num=1):
+    paginator = Paginator(Gif.objects.filter(tags__name=tag), 40)
+    try:
+        page = paginator.page(page_num)
+    except PageNotAnInteger:
+        page = Paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.count())
+
+    gifs = page.object_list
+    tags = Tag.objects.all()
+    return render(request, 'main/tag.html', {'gifs': gifs, 'tags': tags, 'page': page, 'tag': tag})
 
 
 def update_tag(request):
