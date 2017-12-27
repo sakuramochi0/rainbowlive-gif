@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block body %}
+    {% csrf_token %}
+    <div class="container-fluid">
+        <h1>{% block title %}🌈 Rainbowlive gif tagger{% endblock %}</h1>
+        <h2>#{{ tag }}</h2>
+        <div class="row mb-3">
+            <div class="mx-auto">
+                {% if page.has_previous %}
+                    <a href="{% url 'tag' tag page.previous_page_number %}"
+                       class="prev btn btn-secondary">Prev</a>
+                {% endif %}
+                <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
+                {% if page.has_next %}
+                    <a href="{% url 'tag' tag page.next_page_number %}"
+                       class="next btn btn-primary">Next</a>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+
+
+        <div class="row">
+            {% for gif in gifs %}
+                <div class="col-6 col-md-4 col-lg-3 mb-3">
+                    <a href="https://video.twimg.com/tweet_video/{{ gif.filename }}">
+                        <video src="https://video.twimg.com/tweet_video/{{ gif.filename }}" autoplay loop></video>
+                    </a>
+                </div>
+
+
+
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="row mb-3">
+            <div class="mx-auto">
+                <a href="{% if page.has_previous %}{% url 'tag' tag page.previous_page_number %}{% else %}#{% endif %}"
+                   class="prev btn btn-secondary">Prev</a>
+                <span>{{ page.number }} / {{ page.paginator.num_pages }}</span>
+                <a href="{% if page.has_next %}{% url 'tag' tag page.next_page_number %}{% else %}#{% endif %}"
+                   class="next btn btn-primary">Next</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

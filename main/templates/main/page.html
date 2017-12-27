@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block body %}
+    {% csrf_token %}
+    <div class="container-fluid">
+        <h1>{% block title %}🌈 Rainbowlive gif tagger{% endblock %}</h1>
+        <div class="row mb-3">
+            <div class="mx-auto">
+                {% if page.has_previous %}
+                    <a href="{% url 'page' page.previous_page_number %}"
+                       class="prev btn btn-secondary">Prev</a>
+                {% endif %}
+                <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
+                {% if page.has_next %}
+                    <a href="{% url 'page' page.next_page_number %}"
+                       class="next btn btn-primary">Next</a>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+        {% for gif in gifs %}
+            <div class="row">
+                <div class="col-4">
+                    <video src="https://video.twimg.com/tweet_video/{{ gif.filename }}" autoplay loop></video>
+                </div>
+                <div class="tags col-8">
+                    {% for tag in tags %}
+                        <button class="tag mb-2 btn btn-{% if tag in gif.tags.all %}primary{% else %}secondary{% endif %}"
+                                data-filename="{{ gif.filename }}"
+                                data-tag="{{ tag.name }}"
+                                data-checked="{% if tag in gif.tags.all %}true{% else %}false{% endif %}">
+                            {{ tag.name_ja }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+        <div class="row mb-3">
+            <div class="mx-auto">
+                <a href="{% if page.has_previous %}{% url 'page' page.previous_page_number %}{% else %}#{% endif %}"
+                   class="prev btn btn-secondary">Prev</a>
+                <span>{{ page.number }} / {{ page.paginator.num_pages }}</span>
+                <a href="{% if page.has_next %}{% url 'page' page.next_page_number %}{% else %}#{% endif %}"
+                   class="next btn btn-primary">Next</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
