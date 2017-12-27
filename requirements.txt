@@ -1,0 +1,7 @@
+django
+django-extensions
+django-filter
+django-material
+django-viewflow
+pytz
+requests
