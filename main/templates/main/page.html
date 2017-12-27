@@ -7,13 +7,13 @@
         <div class="row mb-3">
             <div class="mx-auto">
                 {% if page.has_previous %}
-                    <a href="{% url 'page' page.previous_page_number %}"
-                       class="prev btn btn-secondary">Prev</a>
+                <a href="{% url 'page' page.previous_page_number %}"
+                   class="prev btn btn-secondary">Prev</a>
                 {% endif %}
                 <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
                 {% if page.has_next %}
-                    <a href="{% url 'page' page.next_page_number %}"
-                       class="next btn btn-primary">Next</a>
+                <a href="{% url 'page' page.next_page_number %}"
+                   class="next btn btn-primary">Next</a>
                 {% endif %}
             </div>
         </div>
@@ -36,13 +36,18 @@
             </div>
             <hr>
         {% endfor %}
-        <div class="row mb-3">
-            <div class="mx-auto">
-                <a href="{% if page.has_previous %}{% url 'page' page.previous_page_number %}{% else %}#{% endif %}"
-                   class="prev btn btn-secondary">Prev</a>
-                <span>{{ page.number }} / {{ page.paginator.num_pages }}</span>
-                <a href="{% if page.has_next %}{% url 'page' page.next_page_number %}{% else %}#{% endif %}"
-                   class="next btn btn-primary">Next</a>
+            <div class="row mb-3">
+                <div class="mx-auto">
+                    {% if page.has_previous %}
+                    <a href="{% url 'page' page.previous_page_number %}"
+                       class="prev btn btn-secondary">Prev</a>
+                    {% endif %}
+                    <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
+                    {% if page.has_next %}
+                    <a href="{% url 'page' page.next_page_number %}"
+                       class="next btn btn-primary">Next</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
