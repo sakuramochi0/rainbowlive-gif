@@ -1,45 +1,68 @@
 {% extends 'main/base.html' %}
 {% load staticfiles %}
-{% block title %}{{ tag.name_ja }} #{{ tag.name }} | 🌈 Rainbowlive gif tagger{% endblock %}
+{% block title %}{{ tag.name_ja }} #{{ tag.name }} | 🌈 Rainbowlive GIF{% endblock %}
 {% block body %}
     {% csrf_token %}
     <div class="container-fluid">
-        <h1>🌈 Rainbowlive gif tagger</h1>
-        <h2>{{ tag.name_ja }} #{{ tag.name }}</h2>
+        <div id="header" class="text-center">
+            <h1 class="mt-3 mb-3">
+                <a href="{% url 'index' %}">
+                    🌈 Rainbowlive GIF
+                </a>
+            </h1>
+            <h2 class="lead mb-3">{{ tag.name_ja }} #{{ tag.name }}</h2>
+            <p>
+                <a class="twitter-share-button"
+                   href="{{ request.get_full_path }}"
+                   data-size="large"
+                   data-lang="ja"
+                   data-hashtags="prettyrhythm">
+                    Tweet
+                </a>
+            </p>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        </div>
+        <p class="text-center">
+            <small>
+                <i class="material-icons align-bottom">file_download</i>
+                画像をクリックするとダウンロードできます。<br>
+                (もしかしたらiPhoneだとダメかも？)
+            </small>
+        </p>
         <div class="row mb-3">
             <div class="mx-auto">
                 {% if page.has_previous %}
-                <a href="{% url 'tag' tag.name page.previous_page_number %}"
-                   class="prev btn btn-secondary">Prev</a>
+                    <a href="{% url 'tag' tag.name page.previous_page_number %}"
+                       class="prev btn btn-secondary">Prev</a>
                 {% endif %}
                 <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
                 {% if page.has_next %}
-                <a href="{% url 'tag' tag.name page.next_page_number %}"
-                   class="next btn btn-primary">Next</a>
+                    <a href="{% url 'tag' tag.name page.next_page_number %}"
+                       class="next btn btn-primary">Next</a>
                 {% endif %}
             </div>
         </div>
         <hr>
         <div class="row">
             {% for gif in gifs %}
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <a href="https://video.twimg.com/tweet_video/{{ gif.filename }}" download>
-                    <video src="https://video.twimg.com/tweet_video/{{ gif.filename }}" autoplay loop></video>
-                </a>
-            </div>
+                <div class="col-6 col-md-4 col-lg-3 mb-3">
+                    <a href="https://video.twimg.com/tweet_video/{{ gif.filename }}" download>
+                        <video src="https://video.twimg.com/tweet_video/{{ gif.filename }}" autoplay loop></video>
+                    </a>
+                </div>
             {% endfor %}
         </div>
-        <hr>
         <div class="row mb-3">
             <div class="mx-auto">
                 {% if page.has_previous %}
-                <a href="{% url 'tag' tag.name page.previous_page_number %}"
-                   class="prev btn btn-secondary">Prev</a>
+                    <a href="{% url 'tag' tag.name page.previous_page_number %}"
+                       class="prev btn btn-secondary">Prev</a>
                 {% endif %}
                 <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
                 {% if page.has_next %}
-                <a href="{% url 'tag' tag.name page.next_page_number %}"
-                   class="next btn btn-primary">Next</a>
+                    <a href="{% url 'tag' tag.name page.next_page_number %}"
+                       class="next btn btn-primary">Next</a>
                 {% endif %}
             </div>
         </div>

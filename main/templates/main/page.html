@@ -3,17 +3,26 @@
 {% block body %}
     {% csrf_token %}
     <div class="container-fluid">
-        <h1>{% block title %}🌈 Rainbowlive gif tagger{% endblock %}</h1>
+        <div id="header" class="text-center">
+            <h1 class="mt-3 mb-3">
+                <a href="{% url 'index' %}">
+                    🌈 Rainbowlive GIF
+                </a>
+            </h1>
+            <p>
+                ここはGIFのタグを編集するページです。よくわからない人は編集しないでください。
+            </p>
+        </div>
         <div class="row mb-3">
             <div class="mx-auto">
                 {% if page.has_previous %}
-                <a href="{% url 'page' page.previous_page_number %}"
-                   class="prev btn btn-secondary">Prev</a>
+                    <a href="{% url 'page' page.previous_page_number %}"
+                       class="prev btn btn-secondary">Prev</a>
                 {% endif %}
                 <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
                 {% if page.has_next %}
-                <a href="{% url 'page' page.next_page_number %}"
-                   class="next btn btn-primary">Next</a>
+                    <a href="{% url 'page' page.next_page_number %}"
+                       class="next btn btn-primary">Next</a>
                 {% endif %}
             </div>
         </div>
@@ -36,19 +45,19 @@
             </div>
             <hr>
         {% endfor %}
-            <div class="row mb-3">
-                <div class="mx-auto">
-                    {% if page.has_previous %}
+        <div class="row mb-3">
+            <div class="mx-auto">
+                {% if page.has_previous %}
                     <a href="{% url 'page' page.previous_page_number %}"
                        class="prev btn btn-secondary">Prev</a>
-                    {% endif %}
-                    <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
-                    {% if page.has_next %}
+                {% endif %}
+                <span class="mx-2">{{ page.number }} / {{ page.paginator.num_pages }}</span>
+                {% if page.has_next %}
                     <a href="{% url 'page' page.next_page_number %}"
                        class="next btn btn-primary">Next</a>
-                    {% endif %}
-                </div>
+                {% endif %}
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}

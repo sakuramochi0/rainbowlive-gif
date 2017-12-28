@@ -2,23 +2,65 @@
 {% load staticfiles %}
 {% block body %}
     <div class="container-fluid">
-        <h1>{% block title %}🌈 Rainbowlive gif tagger{% endblock %}</h1>
+        <div id="header" class="text-center">
+            <h1 class="mt-3 mb-3">
+                <a href="{% url 'index' %}">
+                    {% block title %}🌈 Rainbowlive GIF{% endblock %}
+                </a>
+            </h1>
+            <p>
+                <a class="twitter-share-button"
+                   href="{{ request.get_full_path }}"
+                   data-size="large"
+                   data-lang="ja"
+                   data-hashtags="prettyrhythm">
+                    Tweet
+                </a>
+            </p>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <p>
+                <a href="https://twitter.com/rainbowlive_gif">
+                    @rainbowlive_gif
+                </a>
+                さんのGIF画像にタグを付けて探しやすく整理したページです。
+                お気に入りのGIFでタイムラインを虹色にデコっちゃおう！
+            </p>
+            <p>
+                <small>
+                    <i class="material-icons align-bottom">info_outline</i>
+                    動画をたくさん表示しているので、1ページごとに20MBくらいデータをダウンロードしてしまいます！
+                    スマートフォンの人は気を付けてください。
+                </small>
+            </p>
+        </div>
         <hr>
         <div class="row">
             {% for tag, gif in tag_gif_list %}
-                <div class="col-4">
+                <div class="col-6 col-md-4">
                     <a class="card mb-3 bg-inverse text-white" href="{% url 'tag' tag.name %}">
                         <video class="card-img-top"
                                src="https://video.twimg.com/tweet_video/{{ gif.filename }}"
                                alt="Gif iamge of {{ tag.name }}" autoplay loop></video>
                         <div class="card-block">
                             <p class="card-text">
-                                {{ tag.name_ja }} #{{ tag.name }}
+                                {{ tag.name_ja }}
+                                <span class="hidden-xs-down"> #{{ tag.name }}</span>
                             </p>
                         </div>
                     </a>
                 </div>
             {% endfor %}
+        </div>
+        <hr>
+        <div id="footer">
+            <dl class="row">
+                <dt class="col-3 col-sm-2 col-lg-1">作った人</dt>
+                <dd class="col">
+                    <a href="https://twitter.com/skrmch_rhythpri">
+                        さくらもち (@skrmch_rhythpri)
+                    </a>
+                </dd>
+            </dl>
         </div>
     </div>
 {% endblock %}
