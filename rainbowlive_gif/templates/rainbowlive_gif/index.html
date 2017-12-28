@@ -28,7 +28,7 @@
             <p>
                 <small>
                     <i class="material-icons align-bottom">info_outline</i>
-                    動画をたくさん表示しているので、1ページごとに20MBくらいデータをダウンロードしてしまいます！
+                    動画をたくさん表示しているので、1ページごとに10MBくらいデータをダウンロードしてしまいます！
                     スマートフォンの人は気を付けてください。
                 </small>
             </p>
@@ -40,7 +40,7 @@
                     <a class="card mb-3 bg-inverse text-white" href="{% url 'tag' tag.name %}">
                         <video class="card-img-top"
                                src="https://video.twimg.com/tweet_video/{{ gif.filename }}"
-                               alt="Gif iamge of {{ tag.name }}" autoplay loop></video>
+                               alt="Gif iamge of {{ tag.name }}" autoplay muted loop></video>
                         <div class="card-block">
                             <p class="card-text">
                                 {{ tag.name_ja }}

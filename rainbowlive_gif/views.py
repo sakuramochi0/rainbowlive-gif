@@ -40,7 +40,7 @@ def page(request, page):
 def tag(request, tag_name, page_num=1):
     gifs = Gif.objects.filter(tags__name=tag_name)
     tag = Tag.objects.get(name=tag_name)
-    paginator = Paginator(gifs, 40)
+    paginator = Paginator(gifs, 20)
     try:
         page = paginator.page(page_num)
     except PageNotAnInteger:
