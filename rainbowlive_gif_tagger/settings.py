@@ -25,8 +25,7 @@ SECRET_KEY = '5fa(!c58fev552*fn2bxgb$e)4of2u(+oi*vm&y)*r7nsm&6mm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1', '192.168.150.37']
 
 # Application definition
 
@@ -38,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'main',
+    'rainbowlive_gif',
 ]
 
 MIDDLEWARE = [

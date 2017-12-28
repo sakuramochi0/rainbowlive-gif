@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0003_tag_name_ja'),
+        ('rainbowlive_gif', '0003_tag_name_ja'),
     ]
 
     operations = [

@@ -21,7 +21,7 @@ def index(request):
             continue
         tag_gif = (tag, gif)
         tag_gif_list.append(tag_gif)
-    return render(request, 'main/index.html', {'tag_gif_list': tag_gif_list})
+    return render(request, 'rainbowlive_gif/index.html', {'tag_gif_list': tag_gif_list})
 
 def page(request, page):
     paginator = Paginator(Gif.objects.all(), 20)
@@ -34,7 +34,7 @@ def page(request, page):
 
     gifs = page.object_list
     tags = Tag.objects.all()
-    return render(request, 'main/page.html', {'gifs': gifs, 'tags': tags, 'page': page})
+    return render(request, 'rainbowlive_gif/page.html', {'gifs': gifs, 'tags': tags, 'page': page})
 
 
 def tag(request, tag_name, page_num=1):
@@ -50,7 +50,7 @@ def tag(request, tag_name, page_num=1):
 
     gifs = page.object_list
     tags = Tag.objects.all()
-    return render(request, 'main/tag.html', {'gifs': gifs, 'tags': tags, 'page': page, 'tag': tag})
+    return render(request, 'rainbowlive_gif/tag.html', {'gifs': gifs, 'tags': tags, 'page': page, 'tag': tag})
 
 
 def update_tag(request):

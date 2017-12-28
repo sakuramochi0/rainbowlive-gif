@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_auto_20171129_0925'),
+        ('rainbowlive_gif', '0002_auto_20171129_0925'),
     ]
 
     operations = [

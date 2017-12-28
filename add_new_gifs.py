@@ -5,7 +5,7 @@ from tweepy import Cursor
 from attrdict import AttrDict
 import os
 from glob import glob
-from main.models import Gif
+from rainbowlive_gif.models import Gif
 
 api = get_api('skrmch_rhythpri')
 sn = 'rainbowlive_gif'

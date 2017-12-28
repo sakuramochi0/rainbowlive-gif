@@ -32,6 +32,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='gif',
             name='tag',
-            field=models.ManyToManyField(blank=True, to='main.Tag'),
+            field=models.ManyToManyField(blank=True, to='rainbowlive_gif.Tag'),
         ),
     ]
