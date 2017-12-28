@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block body %}
+    <div class="container-fluid">
+        <h1>{% block title %}🌈 Rainbowlive gif tagger{% endblock %}</h1>
+        <hr>
+        <div class="row">
+            {% for tag, gif in tag_gif_list %}
+                <div class="col-4">
+                    <a class="card mb-3 bg-inverse text-white" href="{% url 'tag' tag.name %}">
+                        <video class="card-img-top"
+                               src="https://video.twimg.com/tweet_video/{{ gif.filename }}"
+                               alt="Gif iamge of {{ tag.name }}" autoplay loop></video>
+                        <div class="card-block">
+                            <p class="card-text">
+                                {{ tag.name_ja }} #{{ tag.name }}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

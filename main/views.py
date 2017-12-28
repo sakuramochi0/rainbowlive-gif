@@ -1,15 +1,27 @@
-import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import F, Count
 
 from .models import Gif, Tag
 
 
 def index(request):
-    return HttpResponseRedirect(reverse('page', args=[1]))
-
+    tags = Tag.objects.all()
+    tag_gif_list = []
+    for tag in tags:
+        # 多人数が映っているタグを選択すると同じGIFが重複してしまうので
+        # タグを1つだけ持っているGIFを選択する
+        gif = Gif.objects.annotate(num_tags=Count(F('tags'))).filter(num_tags=1, tags=tag).first()
+        if not gif:
+            # tagが1つだけのgifがない時は複数人を許す
+            gif = Gif.objects.filter(tags=tag).first()
+        if not gif:
+            # gifが0個の場合はスキップする
+            continue
+        tag_gif = (tag, gif)
+        tag_gif_list.append(tag_gif)
+    return render(request, 'main/index.html', {'tag_gif_list': tag_gif_list})
 
 def page(request, page):
     paginator = Paginator(Gif.objects.all(), 20)
@@ -25,8 +37,10 @@ def page(request, page):
     return render(request, 'main/page.html', {'gifs': gifs, 'tags': tags, 'page': page})
 
 
-def tag(request, tag, page_num=1):
-    paginator = Paginator(Gif.objects.filter(tags__name=tag), 40)
+def tag(request, tag_name, page_num=1):
+    gifs = Gif.objects.filter(tags__name=tag_name)
+    tag = Tag.objects.get(name=tag_name)
+    paginator = Paginator(gifs, 40)
     try:
         page = paginator.page(page_num)
     except PageNotAnInteger:
