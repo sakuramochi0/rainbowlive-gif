@@ -22,7 +22,7 @@
                 <a href="https://twitter.com/rainbowlive_gif">
                     @rainbowlive_gif
                 </a>
-                さんのGIF画像にタグを付けて探しやすく整理したページです。
+                さんのプリティーリズム・レインボーライブのGIF画像に、タグを付けて探しやすく整理したページです。
                 お気に入りのGIFでタイムラインを虹色にデコっちゃおう！
             </p>
             <p>
@@ -40,7 +40,7 @@
                     <a class="card mb-3 bg-inverse text-white" href="{% url 'tag' tag.name %}">
                         <video class="card-img-top"
                                src="https://video.twimg.com/tweet_video/{{ gif.filename }}"
-                               alt="Gif iamge of {{ tag.name }}" autoplay muted loop></video>
+                               alt="Gif iamge of {{ tag.name }}" autoplay playsinline muted loop></video>
                         <div class="card-block">
                             <p class="card-text">
                                 {{ tag.name_ja }}

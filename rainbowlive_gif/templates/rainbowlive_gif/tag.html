@@ -27,7 +27,7 @@
             <small>
                 <i class="material-icons align-bottom">file_download</i>
                 画像をクリックするとダウンロードできます。<br>
-                (もしかしたらiPhoneだとダメかも？)
+                (iPhoneのSafariではダウンロードができません)
             </small>
         </p>
         <div class="row mb-3">
@@ -49,7 +49,7 @@
                 <div class="col-6 col-md-4 col-lg-3 mb-3">
                     <a href="https://video.twimg.com/tweet_video/{{ gif.filename }}" download>
                         <video src="https://video.twimg.com/tweet_video/{{ gif.filename }}"
-                               autoplay muted loop></video>
+                               autoplay playsinline muted loop></video>
                     </a>
                 </div>
             {% endfor %}

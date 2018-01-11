@@ -1,5 +1,8 @@
+import io
+import requests
+
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, FileResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import F, Count
 
