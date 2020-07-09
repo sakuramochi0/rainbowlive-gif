@@ -16,6 +16,7 @@ class Gif(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_updated_to_giphy = models.BooleanField(default=False)
+    tweet_url = models.CharField(max_length=255, default=None)
 
     def __str__(self):
         tags = ' '.join(['#' + t.name for t in self.tags.all()])
